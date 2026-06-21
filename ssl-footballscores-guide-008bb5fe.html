@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事里的足球比分 · 温和介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f2f2;
+            font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #2c3e4f;
+            line-height: 1.7;
+            padding: 30px 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 880px;
+            width: 100%;
+        }
+
+        /* 柔和卡片层叠感 */
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.03);
+            padding: 2rem 2.2rem;
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02), 0 0 0 1px #d9d9d9;
+        }
+
+        /* hero 短开场 */
+        .hero-tag {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #7e8c9e;
+            margin-bottom: 0.2rem;
+            font-weight: 400;
+        }
+
+        .hero-title {
+            font-size: 2.1rem;
+            font-weight: 450;
+            color: #1e2b36;
+            line-height: 1.2;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #4a5b6b;
+            max-width: 600px;
+            margin-top: 0.25rem;
+        }
+
+        .wave-line {
+            width: 60px;
+            height: 3px;
+            background: #b9cadb;
+            border-radius: 6px;
+            margin: 1rem 0 0.8rem 0;
+        }
+
+        /* 段落风格 */
+        .intro-text {
+            font-size: 1.05rem;
+            color: #34495e;
+        }
+
+        .intro-text p {
+            margin-bottom: 1.1rem;
+        }
+
+        .intro-text a {
+            color: #2c5f7c;
+            text-decoration: none;
+            border-bottom: 1px dashed #b3c9da;
+            font-weight: 450;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .intro-text a:hover {
+            color: #1a4057;
+            border-bottom: 1px solid #2c5f7c;
+        }
+
+        /* 特点列表——温和符号 */
+        .feature-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            padding: 0.25rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 1.02rem;
+            color: #2f4253;
+            padding: 0.4rem 0.2rem;
+            border-bottom: 1px solid #eceff3;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-marker {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #b6cddf;
+            border-radius: 50%;
+            margin-top: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-content strong {
+            font-weight: 500;
+            color: #253b49;
+        }
+
+        .feature-content span {
+            color: #506c80;
+        }
+
+        /* 温和场景 */
+        .scene-box {
+            background: #f7fafc;
+            border-radius: 16px;
+            padding: 1.4rem 1.8rem;
+            border: 1px solid #e3eaf0;
+            margin: 1rem 0 0.2rem 0;
+        }
+
+        .scene-box p {
+            margin-bottom: 0.6rem;
+        }
+
+        .scene-box .mention-link {
+            color: #2c5f7c;
+            text-decoration: none;
+            border-bottom: 1px dotted #b3c9da;
+        }
+
+        .scene-box .mention-link:hover {
+            border-bottom: 1px solid #1a4057;
+        }
+
+        /* FAQ 摘要风格 */
+        .faq-mini {
+            margin-top: 0.5rem;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #1f3342;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+        }
+
+        .faq-q::before {
+            content: "▹";
+            color: #8da7be;
+            font-size: 1rem;
+        }
+
+        .faq-a {
+            color: #4d6275;
+            margin-bottom: 1rem;
+            margin-left: 1.3rem;
+            padding-left: 0.2rem;
+            border-left: 2px solid #e3eaf0;
+            padding-left: 0.8rem;
+        }
+
+        .faq-a a {
+            color: #2c5f7c;
+            border-bottom: 1px dotted #b3c9da;
+            text-decoration: none;
+        }
+
+        .faq-a a:hover {
+            border-bottom: 1px solid #2c5f7c;
+        }
+
+        /* 温和结尾 */
+        .gentle-footer {
+            text-align: left;
+            font-size: 0.98rem;
+            color: #5e7285;
+            border-top: 1px solid #dee6ed;
+            padding-top: 1.4rem;
+            margin-top: 0.2rem;
+        }
+
+        .gentle-footer small {
+            display: block;
+            margin-top: 0.5rem;
+            color: #7f93a6;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .card {
+                padding: 1.5rem 1.2rem;
+                border-radius: 18px;
+            }
+
+            .hero-title {
+                font-size: 1.7rem;
+            }
+
+            .feature-item {
+                flex-direction: row;
+                gap: 0.6rem;
+            }
+
+            .scene-box {
+                padding: 1rem 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 开场短句：hero 卡片 -->
+        <div class="card" style="padding-bottom: 1.5rem;">
+            <div class="hero-tag">一个安静的角落 · 关于比分</div>
+            <div class="hero-title">从一场比赛说起</div>
+            <div class="wave-line"></div>
+            <div class="hero-sub">
+                有时候，我们只是想看一眼比分——不需要喧哗，只希望数据温和、可靠。
+            </div>
+        </div>
+
+        <!-- 承接段落 · 站点介绍与可信说明 -->
+        <div class="card intro-text">
+            <p>
+                在很多个周末的午后，或周中的夜晚，足球比赛如期上演。而比分，是故事里最简短却也最关键的标点。
+                这个网站——<a href="https://ssl-footballscores.com">足球比分</a>——正是为这样一种需求而生：
+                它不刻意制造紧张，也不渲染戏剧，只是将实时赛果、赛程以及联赛数据有条理地呈现出来。
+            </p>
+            <p>
+                站点的内容覆盖了欧洲主要联赛及部分杯赛，信息更新节奏稳定。从页面结构来看，团队更倾向于让数据自己说话，
+                而不是用弹窗或横幅干扰阅读。这种务实的态度，在今天的体育资讯环境中，反而显得难得。
+                你可以透过它的界面，直接看到进球时间、红黄牌以及阵容概况——没有多余的装饰，也没有模糊的诱导。
+            </p>
+            <p>
+                如果你正在寻找一个可以安静查阅<a href="https://ssl-footballscores.com">足球比分</a>的地方，
+                不掺杂过度的情绪渲染，也不被广告频繁打断，那么它或许是一个值得收藏的选项。
+                当然，任何数据源都建议交叉验证，但作为日常参考，它的稳定性一直保持着不错的口碑。
+            </p>
+        </div>
+
+        <!-- 特点列表 · 温和符号 + 简洁描述 -->
+        <div class="card">
+            <div style="font-weight: 450; font-size: 1.1rem; margin-bottom: 0.7rem; color: #2b4152;">
+                · 一些可以注意到的细节
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="feature-marker"></span>
+                    <div class="feature-content"><strong>赛程覆盖</strong> <span>包含英超、西甲、意甲、德甲、法甲以及欧冠、欧联等主要赛事，日常更新稳定。</span></div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-marker"></span>
+                    <div class="feature-content"><strong>界面风格</strong> <span>浅色背景，表格清晰，没有自动播放的视频或闪烁的横幅，浏览时干扰较少。</span></div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-marker"></span>
+                    <div class="feature-content"><strong>数据呈现</strong> <span>比分、进球时间、红黄牌、换人信息均以文字方式列出，方便快速浏览或复制。</span></div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-marker"></span>
+                    <div class="feature-content"><strong>可信说明</strong> <span>SSL 加密连接，页面没有可疑跳转，域名使用时间较长，社区讨论中普遍视为普通资讯站。</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 场景 + 温和提示 -->
+        <div class="card">
+            <div style="font-weight: 450; font-size: 1.1rem; margin-bottom: 0.6rem; color: #2b4152;">
+                你会在什么时候想起它
+            </div>
+            <div class="scene-box">
+                <p>
+                    比如你正在加班，无法看直播，但想确认一下自己的主队是否领先；
+                    又或者你只是想回顾前一晚的赛果，不想被社交媒体的情绪裹挟。
+                    在这些时刻，一个直接显示比分的页面就足够了。
+                </p>
+                <p>
+                    <a href="https://ssl-footballscores.com" class="mention-link">足球比分</a>
+                    的首页会把当天主要比赛按联赛分组排列，点击即可查看细节。没有复杂的会员系统，
+                    也没有催促你注册的弹窗。它更像一个数字公告板，安安静静地更新着。
+                </p>
+                <p style="font-size: 0.95rem; color: #5a7185;">
+                    ☕ 一个小提醒：任何体育数据源都可能存在延迟或偶发错误，建议将官方渠道或俱乐部信息作为最终核对依据。
+                </p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 · 自然引出 -->
+        <div class="card">
+            <div style="font-weight: 450; font-size: 1.1rem; margin-bottom: 0.8rem; color: #2b4152;">
+                你可能想问的（简短版）
+            </div>
+            <div class="faq-mini">
+                <div class="faq-q">这个网站需要注册吗？</div>
+                <div class="faq-a">不需要。直接打开即可看到当天赛程和比分，无强制登录或付费墙。</div>
+
+                <div class="faq-q">数据更新快吗？有没有历史数据？</div>
+                <div class="faq-a">通常比赛过程中会实时刷新，也保留了过去几轮的赛果。但深度历史统计（如几年前的射手榜）建议使用专业数据平台。</div>
+
+                <div class="faq-q">我可以信任它的比分吗？</div>
+                <div class="faq-a">作为日常参考是可靠的。不过和所有第三方体育数据站一样，关键赛事建议与官方比分或直播源对照。<br>
+                主页链接：<a href="https://ssl-footballscores.com">足球比分</a> — 你可以自行体验它的更新节奏。</div>
+            </div>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="card gentle-footer" style="padding-bottom: 1.8rem;">
+            <p>
+                足球的世界里，比分只是其中一个维度。但这个维度，恰恰串联起了无数人的等待、讨论和记忆。
+                希望这个站点能成为你了解比赛的一个安静窗口——不打扰，不夸大，只是如实地记录着每一声哨响后的数字。
+            </p>
+            <small>— 页面内容仅为介绍，使用体验因人而异。请根据自身判断选择信息源。 —</small>
+        </div>
+    </div>
+</body>
+</html>
